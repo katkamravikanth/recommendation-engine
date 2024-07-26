@@ -101,20 +101,20 @@ For testing API's I have added Postman collection file
 
 ### Project Structure
 
+```bash
 ├── config/             # Configuration files
 ├── migrations/         # Database migration files
 ├── public/             # Publicly accessible files
-├── src/                # Application source code
+├── src/                # Application source code/
 │   ├── Controller/     # Controllers
 │   ├── Entity/         # Doctrine entities
 │   ├── EventListener/  # Event listeners
 │   ├── Repository/     # Repositories
-│   ├── Service/        # Services
-│   └── Tests/          # Test cases
+│   └── Service/        # Services
 ├── templates/          # Twig templates
 ├── tests/              # Test files
 └── var/                # Application data
-
+```
 
 ## Acknowledgements
 
