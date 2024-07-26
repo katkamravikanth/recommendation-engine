@@ -1,0 +1,10 @@
+nelmio_api_doc:
+  documentation:
+    info:
+      title: Recommendation Engine
+      description: Personalized recommendation engine. This engine will analyze user behavior, purchase history, and product attributes to suggest relevant products on product pages and during checkout.
+      version: 1.0.0
+
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api
