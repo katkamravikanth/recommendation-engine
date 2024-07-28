@@ -44,7 +44,7 @@ class PurchaseController extends AbstractController
             new OA\Response(response: 400, description: "Invalid input data")
         ]
     )]
-    #[Route('', name: 'create_purchase', methods: ['POST'])]
+    #[Route('/new', name: 'create_purchase', methods: ['POST'])]
     public function createPurchase(
         Request $request,
         EntityManagerInterface $entityManager,

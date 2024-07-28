@@ -55,14 +55,14 @@ class UserController extends AbstractController
             new OA\Response(response: 400, description: "Invalid input data")
         ]
     )]
-    #[Route('', name: 'create_user', methods: ['POST'])]
+    #[Route('/new', name: 'create_user', methods: ['POST'])]
     public function createUser(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 
         $user = new User();
+        $user->setName($data['name']);
         $user->setEmail($data['email']);
-        $user->setUsername($data['username']);
         $user->setRoles(['ROLE_USER']);
 
         $hashedPassword = $this->passwordHasher->hashPassword($user, $data['password']);
@@ -105,16 +105,13 @@ class UserController extends AbstractController
         ]
     )]
     #[Route('/{id}', name: 'get_user', methods: ['GET'])]
-    public function getUserById(int $id): Response
+    public function getUserById(User $user): Response
     {
-        $user = $this->userRepository->find($id);
-
-        if (!$user) {
-            $this->logger->error('User not found');
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        if ($user->isDeleted()) {
+            return $this->json(['message' => 'This user has been deleted.'], Response::HTTP_NOT_FOUND);
         }
 
-        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'user']);
+        return $this->json($user, 200, [], ['groups' => ['user']]);
     }
 
 
@@ -151,8 +148,8 @@ class UserController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        $user->setName($data['name'] ?? $user->getName());
         $user->setEmail($data['email'] ?? $user->getEmail());
-        $user->setUsername($data['username'] ?? $user->getUsername());
 
         if (isset($data['password'])) {
             $hashedPassword = $this->passwordHasher->hashPassword($user, $data['password']);

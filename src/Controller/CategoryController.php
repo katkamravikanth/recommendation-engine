@@ -50,7 +50,7 @@ class CategoryController extends AbstractController
             new OA\Response(response: 400, description: "Invalid input data")
         ]
     )]
-    #[Route('', name: 'create_category', methods: ['POST'])]
+    #[Route('/new', name: 'create_category', methods: ['POST'])]
     public function createCategory(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);

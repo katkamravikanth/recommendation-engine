@@ -49,7 +49,7 @@ class ProductController extends AbstractController
             new OA\Response(response: 400, description: "Invalid input data")
         ]
     )]
-    #[Route('', name: 'create_product', methods: ['POST'])]
+    #[Route('/new', name: 'create_product', methods: ['POST'])]
     public function createProduct(
         Request $request,
         EntityManagerInterface $entityManager,

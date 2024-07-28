@@ -22,7 +22,7 @@ class Cart
     #[Groups(['cart', 'user'])]
     private ?int $id = null;
 
-    #[ORM\OneToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['cart'])]
     private ?User $user = null;

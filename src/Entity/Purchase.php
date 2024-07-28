@@ -2,20 +2,24 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\Product;
 use App\Repository\PurchaseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\User;
-use App\Entity\Product;
 
 #[ORM\Entity(repositoryClass: PurchaseRepository::class)]
 #[ORM\Table(name: "purchases")]
 #[ORM\HasLifecycleCallbacks]
+#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false)]
 class Purchase
 {
     use TimestampableEntity;
+    use SoftDeleteableEntity;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
