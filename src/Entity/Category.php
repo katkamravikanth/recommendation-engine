@@ -24,12 +24,12 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
-    #[Groups(['category', 'product'])]
+    #[Groups(['category', 'product', 'recommendation'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 100, unique: true)]
     #[Assert\NotBlank]
-    #[Groups(['category', 'product'])]
+    #[Groups(['category', 'product', 'recommendation'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

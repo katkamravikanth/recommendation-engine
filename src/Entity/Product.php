@@ -24,39 +24,39 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
-    #[Groups(['product', 'category', 'cart', 'cart_item', 'purchase', 'user'])]
+    #[Groups(['product', 'category', 'cart', 'cart_item', 'purchase', 'user', 'recommendation'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank(message: 'The name should not be blank.')]
-    #[Groups(['product', 'category', 'cart', 'cart_item', 'purchase', 'user'])]
+    #[Groups(['product', 'category', 'cart', 'cart_item', 'purchase', 'user', 'recommendation'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['product'])]
+    #[Groups(['product', 'recommendation'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     #[Assert\NotBlank(message: 'The price should not be blank.')]
     #[Assert\Positive(message: 'The price must be a positive number.')]
-    #[Groups(['product', 'cart_item'])]
+    #[Groups(['product', 'cart_item', 'recommendation'])]
     private ?string $price = null;
 
     #[ORM\Column(type: Types::STRING, length: 100)]
-    #[Groups(['product', 'cart', 'cart_item'])]
+    #[Groups(['product', 'cart', 'cart_item', 'recommendation'])]
     private ?string $brand = null;
 
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
-    #[Groups(['product', 'cart_item'])]
+    #[Groups(['product', 'cart_item', 'recommendation'])]
     private ?string $size = null;
 
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
-    #[Groups(['product', 'cart_item'])]
+    #[Groups(['product', 'cart_item', 'recommendation'])]
     private ?string $color = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['product'])]
+    #[Groups(['product', 'recommendation'])]
     private $category;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Purchase::class)]
