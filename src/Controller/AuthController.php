@@ -48,8 +48,8 @@ class AuthController extends AbstractController
             content: new OA\JsonContent(
                 type: "object",
                 properties: [
+                    new OA\Property(property: "name", type: "string", example: "user name"),
                     new OA\Property(property: "email", type: "string", example: "user@example.com"),
-                    new OA\Property(property: "username", type: "string", example: "user123"),
                     new OA\Property(property: "password", type: "string", example: "password123")
                 ]
             )
@@ -65,8 +65,8 @@ class AuthController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $user = new User();
+        $user->setName($data['name']);
         $user->setEmail($data['email']);
-        $user->setUsername($data['username']);
         $user->setRoles(['ROLE_USER']);
 
         $hashedPassword = $this->passwordHasher->hashPassword($user, $data['password']);

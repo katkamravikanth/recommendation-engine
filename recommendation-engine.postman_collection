@@ -22,7 +22,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\": \"user@example.com\", \"username\": \"user123\", \"password\": \"password123\"}"
+                            "raw": "{\"name\": \"user name\", \"email\": \"user@example.com\", \"password\": \"password123\"}"
                         },
                         "url": {
                             "raw": "{{base_url}}/api/register",
